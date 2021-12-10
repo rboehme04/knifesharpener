@@ -62,12 +62,16 @@ Thank you for this opportunity, the course was fantastic.
 ### How to run this web application:
 1. Initialize the database with makemigrations and migrate.
 
+<pre>
 *python manage.py makemigrations*  
 *python manage.py migrate*  
+</pre>
 
 2. Start the server.
 
+<pre>
 *python manage.py runserver*
+</pre>
 
 3. Open the web app in your browser.
 
