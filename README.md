@@ -1,4 +1,4 @@
-#Capstone project by Richard Böhme
+# Capstone project by Richard Böhme
 
 ###About:
 The project I chose for the capstone project is a type of e-commerce store where you can order services and communicate with the site administrator through a built-in messenger function. 
