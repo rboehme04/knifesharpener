@@ -18,7 +18,7 @@ The following is the file structure of the project where I added or modified. De
 
 / (folder)  
 -- (files)  
-
+<pre>
 /Capstone - main project folder  
   /capstone - Django main project folder  
     --settings.py - installed the app knivesharpener  
@@ -51,7 +51,8 @@ The following is the file structure of the project where I added or modified. De
     --urls.py - all neccessary ulrpatterns were added  
     --views.py - the python backand and some APIs are handled here  
   --db.sqlite3 - the submitted data is stored in this database  
-  --README.md - this file  
+  --README.md - this file 
+  </pre>
 
 ### Conclusion:
 This project was a challenge for me because I think it contains complex functions. It took me a lot of time to build the website the way I imagined it. I wrote the front-end objects of the website in German, I hope that this is not a problem. All in all, this was a difficult and time-consuming project for me, but the joy was even greater when it finally worked.  
