@@ -1,0 +1,90 @@
+.box-element {
+    box-shadow: hsl(0, 0%, 75%) 0 0 16px;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.table {
+    border-color: white;
+}
+
+.cart-row {
+    display: flex;
+    vertical-align: middle;
+    padding-bottom: 10px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ececec;
+}
+
+.row-image {
+    width: 100px;
+}
+
+.form-field{
+    width: 250px;
+    display: inline-block;
+    padding: 5px;
+}
+
+.form-fields{
+    width: 500px;
+    display: inline-block;
+    padding: 5px;
+}
+
+.qty .count {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 20px;
+    padding: 0 2px;
+    min-width: 25px;
+    text-align: center;
+}
+.qty .plus {
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 5px;
+    color: white;
+    width: 20px;
+    height: 20px;
+    font: 25px/0.9 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    }
+.qty .minus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    margin-top: 5px;
+    width: 20px;
+    height: 20px;
+    font: 25px/0.7 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    background-clip: padding-box;
+}
+div {
+    text-align: center;
+}
+.minus:hover{
+    background-color: #717fe0 !important;
+}
+.plus:hover{
+    background-color: #717fe0 !important;
+}
+/*Prevent text selection*/
+input{  
+    border: 0;
+    width: 2%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:disabled{
+    background-color:white;
+}
+

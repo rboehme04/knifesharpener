@@ -1,0 +1,57 @@
+{% extends "knivesharpener/layout.html" %}
+
+{% load static %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box-element">
+                    <a  class="btn btn-outline-dark mb-4" href="{% url 'offers' %}" style="float: left;">&#x2190; Continue Shopping</a>
+                    <br>
+                    <br>
+                    <table class="table">
+                        <tr>
+                            <th><h5 class="pt-3">Anzahl: <strong>{{ cart.total_cart_listings }}</strong></h5></th>
+                            <th><h5 class="pt-3">Preis: <strong>{{ cart.total_cart_price }}€</strong></h5></th>
+                            <th>
+                                <a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Bestellen</a>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+                <div class="box-element">
+                    <div class="cart-row">
+                        <div style="flex:2"></div>
+                        <div style="flex:2"><strong>Artikel</strong></div>
+                        <div style="flex:1"><strong>Preis</strong></div>
+                        <div style="flex:1"><strong>Anzahl</strong></div>
+                        <div style="flex:1"><strong>Gesamtpreis</strong></div>
+                    </div>
+                    
+                    {% for listing in listings %}
+                        <div class="cart-row mt-4">
+                            <div class="pt-2" style="flex:2"><img class="row-image" src="{{ listing.listing_item.image_url }}"></div>
+                            <div class="pt-2" style="flex:2"><p>{{ listing.listing_item.item_title }}</p></div>
+                            <div class="pt-2" style="flex:1"><p>{{ listing.listing_item.price }}€</p></div>
+                            <div style="flex:1">
+                                <div class="qty mt-1">
+                                    <span data-listing='{{ listing.listing_item.id }}' data-action='remove' class="minus bg-dark update-cart">-</span>
+                                    <input type="number" class="count" name="qty" value="{{ listing.quantity }}">
+                                    <span data-listing='{{ listing.listing_item.id }}' data-action='add' class="plus bg-dark update-cart">+</span>   
+                                </div>
+                            </div>
+                            <div style="flex:1"><p>{{ listing.total_price }}€</p></div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

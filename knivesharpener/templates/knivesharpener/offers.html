@@ -1,0 +1,50 @@
+{% extends "knivesharpener/layout.html" %}
+
+{% load static %}
+
+{% block body %}
+
+    <h1 id="header" class="pt-3" style="text-align: center;">Angebote für das Messerschleifen</h1>
+
+    <div class="container">
+        {% for listing in offers %}
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="row mb-5 mt-5 border p-5">
+                    <div id="{{ listing.animation_header }}" class="col-6">
+                        <h2 class="mt-5" style="text-align: left;">{{ listing.item_title }}</h2>
+                        <div class="row mt-4">
+                            <div class="col-lg-2 col-sm-2 p-2" style="text-align: right;">{{ listing.price }}€</div>
+                            <div class="col-lg-4 col-sm-5 warenkorb">
+                                <button data-listing="{{ listing.id }}" data-action="add" class="btn update-cart">In den Warenkorb</button>
+                            </div>
+                            <div class="col-lg-3 col-sm-5"></div>
+                        </div>
+                    </div> 
+                    <img id="{{ listing.animation_image }}" class="col-6" src="{{ listing.image_url }}"> 
+                </div>
+            {% else %}
+                <div class="row mb-5 mt-5 border p-5">
+                    <img id="{{ listing.animation_image }}" class="col-6" src="{{ listing.image_url }}">
+                    <div id="{{ listing.animation_header }}" class="col-6">
+                        <h2 class="mt-5" style="text-align: right;">{{ listing.item_title }}</h2>
+                        <div class="row mt-4">
+                            <div class="col-lg-5 col-sm-2 p-2" style="text-align: right;"></div>
+                            <div class="col-lg-3 col-sm-5 p-2" style="text-align: right;">{{ listing.price }}€ &nbsp;</div>
+                            <div class="col-lg-4 col-sm-5 warenkorb">
+                                <button data-listing="{{ listing.id }}" data-action="add" class="btn update-cart">In den Warenkorb</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+ 
+    
+   
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

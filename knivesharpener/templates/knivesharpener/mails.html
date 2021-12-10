@@ -1,0 +1,68 @@
+{% extends "knivesharpener/layout.html" %}
+
+{% load static %}
+
+{% block body %}
+
+    <div class="row m-4">
+        <ul class="mail-choose">
+            <li style="float: left;"><h2 id="title-mail">Posteingang &nbsp;</h2></li>
+        </ul>
+    </div>
+
+    <div class="container" id="admin">
+    </div>
+    
+    <div class="container" id='inbox-switch'>
+    	<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-6">
+								<a href="#" id="inbox" style="font-size: 18px;">Eingang</a>
+							</div>
+							<div class="col-6 font-size">
+								<a href="#" id="archive" style="font-size: 18px;">Archiv</a>
+							</div>
+						</div>
+						<div id="bottom_line" class="bottom_line_inbox"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+
+    <div class="container border-top border-left border-right" id="table-top">
+        <div class="row mb-3 mt-3 ms-2 table-top-color">
+            <div class="col-sm-5 col-lg-9 themed-grid-col">Betreff</div>
+            <div class="col-sm-2 col-lg-1 themed-grid-col">Datum</div>
+            <div class="col-sm-2 col-lg-1 themed-grid-col">Gelesen</div>
+            <div class="col-sm-2 col-lg-1 themed-grid-col">Archivieren</div>
+        </div>
+        <hr>
+    </div>
+
+    <div id="emails-view" class="container border-bottom border-left border-right">
+    </div>
+
+    <div id="load-email" class="container">
+    </div>
+
+    <div id="compose-view" class="container mt-3">
+        <h3>New Email</h3>
+        <form id="compose-form">
+            <div class="form-group">
+                From: <input disabled class="form-control m-1" value="{{ request.user.email }}">
+            </div>
+            <div class="form-group">
+                To: <input id="compose-recipients" class="form-control m-1">
+            </div>
+            <div class="form-group">
+                <input class="form-control m-1" id="compose-subject" placeholder="Subject">
+            </div>
+            <textarea class="form-control m-1" id="compose-body" placeholder="Body"></textarea>
+            <input class="btn-primary rounded mt-2" type="submit" class="btn btn-primary"/>
+        </form>
+    </div>
+{% endblock %}

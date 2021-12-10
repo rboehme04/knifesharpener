@@ -1,0 +1,78 @@
+{% extends "knivesharpener/layout.html" %}
+
+{% block body %}
+
+    {% if message %}
+		<div class="alert alert-danger m-1" role="alert">{{ message }}</div> 
+    {% endif %}
+
+    <div class="container">
+    	<div class="row">
+			<div class="col-md-6 offset-md-3 mt-4">
+				<div class="panel panel-login p-2" style="border-radius: 10px; box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.2)">
+					<div class="panel-heading">
+                        <div>
+                            <div class="card-title">
+                                <h3><i class="fa fa-user-circle-o" aria-hidden="true"></i> User <span id="card_title">Login</span></h3>
+                            </div>
+                        </div>
+						<div class="row">
+							<div class="col-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-6 wood-font">
+								<a href="#" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<div id="bottom_line" class="bottom_line_login"></div>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" action="{% url 'login' %}" method="post" style="display: block;">
+                                    {% csrf_token %}
+									<div class="form-group form-listings">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Benutzername" value="">
+									</div>
+									<div class="form-group form-listings">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Passwort">
+									</div>
+									<div class="form-group form-listings">
+										<div class="row">
+											<div class="col-sm-6 offset-sm-3">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+								</form>
+								<form id="register-form" action="{% url 'register' %}" method="post" style="display: none;">
+                                    {% csrf_token %}
+									<div class="form-group form-listings">
+										<input autofocus type="text" name="username" tabindex="1" class="form-control" placeholder="Benutzername">
+									</div>
+									<div class="form-group form-listings">
+										<input type="email" name="email" class="form-control" placeholder="Email Adresse">
+									</div>
+									<div class="form-group form-listings">
+										<input type="password" name="password" class="form-control" placeholder="Passwort">
+									</div>
+									<div class="form-group form-listings">
+										<input type="password" name="confirmation" class="form-control" placeholder="Passwort wiederholen">
+									</div>
+									<div class="form-group form-listings">
+										<div class="row">
+											<div class="col-sm-6 offset-sm-3">
+												<input type="submit" name="register-submit" id="register-submit" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>  
+    
+{% endblock %}
