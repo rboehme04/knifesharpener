@@ -61,7 +61,7 @@ document.querySelector('#compose-question-form').onsubmit = function (event) {
   fetch("/emails", {
     method: 'POST',
     body: JSON.stringify({
-        recipients: 'r.boehme@gmail.com',
+        recipients: 'r.boehme04@gmail.com',
         subject: Subject,
         body: Body
     })
