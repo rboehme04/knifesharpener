@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 		const email_div = document.createElement('div');
 		email_div.setAttribute("class", "border mt-2 p-3");
-		if(email.user == 'admin@admin.com'){
+		if(email.user == 'r.boehme04@gmail.com'){
 			email_div.innerHTML += "from: " + email.sender + "<br />";
 			email_div.innerHTML += "to: ";
 			for (let recipient of email.recipients) {
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.querySelector('#load-email').appendChild(email_div);
 		document.querySelector('#load-email').appendChild(body_div);
 
-		if(email.user == 'admin@admin.com'){
+		if(email.user == 'r.boehme04@gmail.com'){
 			const reply_btn = document.createElement('button'); // reply button
 			reply_btn.setAttribute("class", "btn btn-primary");
 			reply_btn.textContent = "Reply";
