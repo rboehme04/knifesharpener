@@ -1,6 +1,17 @@
-body {
-    margin-top: 70px;
-    font-size: 16px;
+/* If the screen size is smaller than 1200px, set the font-size to 80px */
+@media (min-width: 425px) {
+    body {
+        margin-top: 70px;
+        font-size: 30px;
+    }
+}
+
+/* If the screen size is smaller than 1200px, set the font-size to 80px */
+@media (max-width: 425px) {
+    body {
+        margin-top: 70px;
+        font-size: 30px;
+    }
 }
 
 :target:before {
