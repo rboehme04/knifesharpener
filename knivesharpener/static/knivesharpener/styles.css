@@ -1,16 +1,64 @@
-/* If the screen size is smaller than 1200px, set the font-size to 80px */
-@media (min-width: 425px) {
+@media screen and (max-width: 500px) {
+    body {
+        margin-top: 70px;
+        font-size: 1rem;
+        overflow-x: hidden;
+    }
+    .navbar-brand {
+        font-size: 4vw;
+    }
+    .navbar-nav {
+        font-size: 3.7vw;
+    }
+    .nav-link {
+        padding-right: 0.2rem!important;
+        padding-left: 0.2rem!important;
+    }
+    .ms-auto {
+        margin-left: 0!important;
+    }
+    #showcase .showcase-right {
+        margin: 10px!important;
+    }
+    #showcase h1 {
+        font-size: 35px!important;
+        margin-bottom: 10px!important;
+    }
+    #showcase p {
+        margin-bottom: 0px!important;
+    }
+    .btn-group-lg>.btn, .btn-lg {
+        margin-top: -20px!important;
+        margin-left: 10px!important
+    }
+    #quote {
+        padding: 30px 0 15px 0!important;
+    }
+    #quote p {
+        font-size: 25px!important;
+        margin-bottom: 0.5rem!important;
+    }
+    #quote p.customer {
+        font-size: 20px!important;
+    }
+    .diamondstone {
+        margin-left: 30px!important
+    }
+    .info-right{
+        margin: 10px!important;
+    }
+    .wie-messerschleifen {
+        margin-top: 0!important;
+    }
+}
+
+@media screen and (min-width: 500px) {
     body {
         margin-top: 70px;
         font-size: 16px;
     }
-}
-
-/* If the screen size is smaller than 1200px, set the font-size to 80px */
-@media (max-width: 425px) {
-    body {
-        margin-top: 70px;
-        font-size: 30px;
+    .navbar-brand{
+        font-size: 1.25rem;
     }
 }
 
@@ -36,10 +84,6 @@ p{
 .navbar-default {
     border: 0;
     font-family: Poppins;
-}
-
-.navbar-brand{
-    font-size: 20px;
 }
 
 #showcase {
