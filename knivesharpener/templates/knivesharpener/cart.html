@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="box-element">
-                    <a  class="btn btn-outline-dark mb-4" href="{% url 'offers' %}" style="float: left;">&#x2190; Weiter Einkaufen</a>
+                    <a  class="btn btn-outline-dark mb-4 cart-button-mobile" href="{% url 'offers' %}" style="float: left;">&#x2190; Weiter Einkaufen</a>
                     <br>
                     <br>
                     <table class="table">
@@ -22,7 +22,7 @@
                 </div>
                 <br>
                 <div class="box-element">
-                    <div class="cart-row">
+                    <div class="cart-row form-top">
                         <div style="flex:2"></div>
                         <div style="flex:2"><strong>Artikel</strong></div>
                         <div style="flex:1"><strong>Preis</strong></div>
@@ -31,7 +31,7 @@
                     </div>
                     
                     {% for listing in listings %}
-                        <div class="cart-row mt-4">
+                        <div class="cart-row mt-4 form-content cart-desktop">
                             <div class="pt-2" style="flex:2"><img class="row-image" src="{{ listing.listing_item.image_url }}"></div>
                             <div class="pt-2" style="flex:2"><p>{{ listing.listing_item.item_title }}</p></div>
                             <div class="pt-2" style="flex:1"><p>{{ listing.listing_item.price }}€</p></div>
@@ -43,6 +43,22 @@
                                 </div>
                             </div>
                             <div style="flex:1"><p>{{ listing.total_price }}€</p></div>
+                        </div>
+                        <div class="cart-row mt-4 form-content cart-mobile">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img class="row-image" src="{{ listing.listing_item.image_url }}">
+                                </div>
+                                <div class="col-8">
+                                    <p class="cart-mobile-line mb-1">{{ listing.listing_item.item_title }}</p>
+                                    <p class="cart-mobile-line mb-1"><strong>{{ listing.listing_item.price }}€</strong></p>
+                                    <div class="qty cart-mobile-line">
+                                        <span data-listing='{{ listing.listing_item.id }}' data-action='remove' class="minus bg-dark update-cart">-</span>
+                                        <input type="number" class="count" name="qty" value="{{ listing.quantity }}">
+                                        <span data-listing='{{ listing.listing_item.id }}' data-action='add' class="plus bg-dark update-cart">+</span>   
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>

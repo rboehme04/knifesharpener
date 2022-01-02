@@ -1,3 +1,21 @@
+@media screen and (max-width: 500px) {
+    .top-form {
+        display: none!important;
+    }
+    .read-icon {
+        display: none!important;
+    }
+    .archive-icon {
+        display: none!important;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .archive-btn-mobile {
+        display: none!important;
+    }
+}
+
 .box-element {
     box-shadow: hsl(0, 0%, 75%) 0 0 16px;
     background-color: #fff;

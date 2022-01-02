@@ -41,7 +41,7 @@
     <body>
         <nav class="navbar navbar-expand navbar-dark bg-dark navbar-default fixed-top">
             <div class="container-fluid">
-              <a class="navbar-brand" href="" style="cursor: default;">KnifeSharpener</a>
+              <a class="navbar-brand" href="{% url 'index' %}#showcase" style="cursor: default;">KnifeSharpener</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -58,10 +58,11 @@
                                 {% if request.user.username == 'admin' %}
                                     <li><a class="dropdown-item" href="{% url 'orders' %}">Aufträge <sup>{% if orders.count != 0 %}{{ orders.count }}{% endif %}</sup></a></li>
                                 {% endif %}
+                                <li class="log-out-mobile"><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                             </ul>
                         </li>
                     {% endif %}
-                    <li class="nav-item">
+                    <li class="nav-item home">
                         <a class="nav-link" aria-current="page" href="{% url 'index' %}#showcase">Home</a>
                     </li>
                     <li class="nav-item">
@@ -71,7 +72,7 @@
                         <a class="nav-link" href="{% url 'index' %}#contact">Contact</a>
                     </li>
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
+                        <li class="nav-item log-out-desktop">
                             <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                         </li>
                     {% else %}

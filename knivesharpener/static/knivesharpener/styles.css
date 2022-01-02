@@ -10,9 +10,18 @@
     .navbar-nav {
         font-size: 3.7vw;
     }
+    .dropdown-item {
+        font-size: 3.7vw;
+    }
     .nav-link {
         padding-right: 0.2rem!important;
         padding-left: 0.2rem!important;
+    }
+    .home {
+        display: none;
+    }
+    .log-out-desktop {
+        display: none;
     }
     .ms-auto {
         margin-left: 0!important;
@@ -50,6 +59,23 @@
     .wie-messerschleifen {
         margin-top: 0!important;
     }
+
+    .heading {
+        margin-top: 5rem!important;
+        margin-bottom: 0rem!important;
+    }
+    .top-form {
+        display: none!important;
+    }
+    .read-icon {
+        display: none!important;
+    }
+    .archive-icon {
+        display: none!important;
+    }
+    #admin {
+        margin-bottom: 1rem!important;
+    }
 }
 
 @media screen and (min-width: 500px) {
@@ -59,6 +85,12 @@
     }
     .navbar-brand{
         font-size: 1.25rem;
+    }
+    .log-out-mobile {
+        display: none;
+    }
+    .archive-btn-mobile {
+        display: none;
     }
 }
 

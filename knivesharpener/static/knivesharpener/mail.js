@@ -109,8 +109,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				const email_div = document.createElement('div');
 				email_div.setAttribute("class", "row mb-3 mt-1 ms-2");
 				email_div.setAttribute("id", `email_div_${email.id}`);
-				email_div.innerHTML += "<div id='subject' class='col-sm-4 col-md-4 col-lg-7 themed-grid-col'>" + email.subject + "</div>";
-				email_div.innerHTML += "<div class='col-sm-3 col-md-3 col-lg-3 themed-grid-col' style='text-align: right'>" + email.timestamp + "</div>";
+				email_div.innerHTML += "<div id='subject' class='col-sm-4 col-md-4 col-lg-7 col-8 themed-grid-col'>" + email.subject + "</div>";
+				email_div.innerHTML += "<div class='col-sm-3 col-md-3 col-lg-3 col-4 themed-grid-col' style='text-align: right'>" + email.timestamp + "</div>";
 				email_div.innerHTML += "<div id='read' class='col-sm-2 col-md-2 col-lg-1 themed-grid-col'></div>";
 				email_div.innerHTML += "<div id='archive' class='col-sm-2 col-md-3 col-lg-1 themed-grid-col'></div>";
 				document.querySelector('#emails-view').appendChild(email_div);
@@ -124,9 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
 					const read_icon = document.createElement('i');
 					read_icon.setAttribute("aria-hidden", "true");
 					if(email.read == true) {
-						read_icon.setAttribute("class", "fa fa-check-square-o");
+						read_icon.setAttribute("class", "fa fa-check-square-o read-icon");
 					} else {
-						read_icon.setAttribute("class", "fa fa-square-o");
+						read_icon.setAttribute("class", "fa fa-square-o read-icon");
 						document.querySelector(`#email_div_${email.id} #subject`).style.fontWeight = "900";
 					}
 					document.querySelector(`#email_div_${email.id} #read`).appendChild(read_icon);
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					})
 					//archive button
 					const archive_btn = document.createElement('i');
-					archive_btn.setAttribute("class", "fa fa-archive");
+					archive_btn.setAttribute("class", "fa fa-archive archive-icon");
 					archive_btn.setAttribute("aria-hidden", "true");
 					document.querySelector(`#email_div_${email.id} #archive`).appendChild(archive_btn);
 					archive_btn.addEventListener('click', () => {
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 		const email_div = document.createElement('div');
 		email_div.setAttribute("class", "border mt-2 p-3");
-		if(email.user == 'r.boehme04@gmail.com'){
+		if(email.user == 'admin@admin.com'){
 			email_div.innerHTML += "from: " + email.sender + "<br />";
 			email_div.innerHTML += "to: ";
 			for (let recipient of email.recipients) {
@@ -197,12 +197,27 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.querySelector('#load-email').appendChild(back_btn);
 		back_btn.addEventListener('click', () => {
 			load_mailbox('inbox');	
-		}); 
+		});
 
 		document.querySelector('#load-email').appendChild(email_div);
 		document.querySelector('#load-email').appendChild(body_div);
 
-		if(email.user == 'r.boehme04@gmail.com'){
+		//archive button
+		const archive_btn = document.createElement('button');
+		archive_btn.setAttribute("class", "btn btn-primary archive-btn-mobile");
+		archive_btn.textContent = "Archivieren";
+		document.querySelector('#load-email').appendChild(archive_btn);
+		archive_btn.addEventListener('click', () => {
+			fetch('/emails/'+`${email.id}`, {
+				method: 'PUT',
+				body: JSON.stringify({
+					archived: !(email.archived)
+				})
+			})
+			.then(() => load_mailbox('inbox'));
+		})
+
+		if(email.user == 'admin@admin.com'){
 			const reply_btn = document.createElement('button'); // reply button
 			reply_btn.setAttribute("class", "btn btn-primary");
 			reply_btn.textContent = "Reply";
@@ -214,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			// prefill form (reply case)
 			document.querySelector('#compose-recipients').value = email.sender;
 			document.querySelector('#compose-subject').value = email.subject.slice(0,4) == 'Re: ' ? 'Re: ' + email.subject.slice(4) : 'Re: ' + email.subject;
-			document.querySelector('#compose-body').value = 'On ' + email.timestamp + ' ' + email.sender + ' wrote: ' + email.body;
+			document.querySelector('#compose-body').value = 'Am ' + email.timestamp + ' schrieb ' + email.sender + ': <br>' + email.body + "<br><br>";
 			}); 
 		}
 	});

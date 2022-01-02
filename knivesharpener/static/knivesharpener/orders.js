@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				const email_div = document.createElement('div');
 				email_div.setAttribute("class", "row mb-3 mt-1 ms-2");
 				email_div.setAttribute("id", `email_div_${order.id}`);
-				email_div.innerHTML += "<div id='subject' class='col-sm-4 col-md-4 col-lg-7 themed-grid-col'>" + order.id + "</div>";
-				email_div.innerHTML += "<div class='col-sm-3 col-md-3 col-lg-3 themed-grid-col' style='text-align: right'>" + order.date_ordered + "</div>";
+				email_div.innerHTML += "<div id='subject' class='col-sm-4 col-md-4 col-lg-7 col-4 themed-grid-col'>" + order.id + "</div>";
+				email_div.innerHTML += "<div class='col-sm-3 col-md-3 col-lg-3 themed-grid-col col-8' style='text-align: right'>" + order.date_ordered + "</div>";
 				email_div.innerHTML += "<div id='read' class='col-sm-2 col-md-2 col-lg-1 themed-grid-col'></div>";
 				email_div.innerHTML += "<div id='archive' class='col-sm-2 col-md-3 col-lg-1 themed-grid-col'></div>";
 				document.querySelector('#emails-view').appendChild(email_div);
@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
 					const read_icon = document.createElement('i');
 					read_icon.setAttribute("aria-hidden", "true");
 					if(order.processed == true) {
-						read_icon.setAttribute("class", "fa fa-check-square-o");
+						read_icon.setAttribute("class", "fa fa-check-square-o read-icon");
 					} else {
-						read_icon.setAttribute("class", "fa fa-square-o");
+						read_icon.setAttribute("class", "fa fa-square-o read-icon");
 						document.querySelector(`#email_div_${order.id} #subject`).style.fontWeight = "900";
 					}
 					document.querySelector(`#email_div_${order.id} #read`).appendChild(read_icon);
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					})
 					//archive button
 					const archive_btn = document.createElement('i');
-					archive_btn.setAttribute("class", "fa fa-archive");
+					archive_btn.setAttribute("class", "fa fa-archive archive-icon");
 					archive_btn.setAttribute("aria-hidden", "true");
 					document.querySelector(`#email_div_${order.id} #archive`).appendChild(archive_btn);
 					archive_btn.addEventListener('click', () => {
@@ -150,6 +150,42 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#load-email').appendChild(cart_id_div);
 		document.querySelector('#load-email').appendChild(body_div);
         document.querySelector('#load-email').appendChild(address_div);
+
+		//Bearbeitet button
+		const read_icon = document.createElement('button');
+		read_icon.setAttribute("class", "btn btn-primary mt-2 me-1 archive-btn-mobile");
+		read_icon.textContent = order.processed ? "Unbearbeitet" : "Bearbeitet";
+		document.querySelector('#load-email').appendChild(read_icon);
+		read_icon.addEventListener('click', () => {
+			fetch('/order/'+`${order.id}`, {
+				method: 'PUT',
+				headers:{
+					'X-CSRFToken': csrftoken,
+				},
+				body: JSON.stringify({
+					processed: !(order.processed)
+				})
+			})
+			.then(() => load_orderbox('inbox'));
+		})
+
+		//archive button
+		const archive_btn = document.createElement('button');
+		archive_btn.setAttribute("class", "btn btn-primary mt-2 archive-btn-mobile");
+		archive_btn.textContent = order.archieved ? "Aktivieren" : "Archivieren";
+		document.querySelector('#load-email').appendChild(archive_btn);
+		archive_btn.addEventListener('click', () => {
+			fetch('/order/'+`${order.id}`, {
+				method: 'PUT',
+				headers:{
+					'X-CSRFToken': csrftoken,
+				},
+				body: JSON.stringify({
+					archived: !(order.archived)
+				})
+			})
+			.then(() => load_orderbox('inbox'));
+		})
 
 	});
 }

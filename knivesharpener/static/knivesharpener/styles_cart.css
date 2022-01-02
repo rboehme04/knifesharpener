@@ -1,3 +1,33 @@
+@media screen and (max-width: 500px) {
+    .cart-button-mobile {
+        margin-bottom: 0rem!important
+    }
+    .form-top {
+        display: none!important;
+    }
+    .form-content {
+        margin-top: 1rem!important
+    }
+    .cart-desktop {
+        display: none!important;
+    }
+    .form-field{
+        width: 90%!important;
+        display: inline-block;
+        padding: 5px;
+    }
+    .summary {
+        order: 1!important;
+        margin-top: 1rem!important
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .cart-mobile {
+        display: none!important;
+    }
+}
+
 .box-element {
     box-shadow: hsl(0, 0%, 75%) 0 0 16px;
     background-color: #fff;
@@ -22,13 +52,13 @@
 }
 
 .form-field{
-    width: 250px;
+    width: 49%;
     display: inline-block;
     padding: 5px;
 }
 
 .form-fields{
-    width: 500px;
+    width: 90%;
     display: inline-block;
     padding: 5px;
 }
