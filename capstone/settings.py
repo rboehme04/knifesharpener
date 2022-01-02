@@ -27,7 +27,7 @@ SECRET_KEY = 'n*%!wf2@a7z5i$13@)y&)x(ew1yyyhzvl1=a5c015+xj!#z((t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'www.knifesharpener.herokuapp.com', 'www.knifesharpener.eu']
 
 
 # Application definition

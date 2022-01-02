@@ -29,7 +29,11 @@
                         <div style="flex:1"><strong>Anzahl</strong></div>
                         <div style="flex:1"><strong>Gesamtpreis</strong></div>
                     </div>
-                    
+                    {% if not listings %}
+                        <div class="box-element">
+                            Noch keine Produkte im Warenkorb.
+                        </div>
+                    {% endif %}
                     {% for listing in listings %}
                         <div class="cart-row mt-4 form-content cart-desktop">
                             <div class="pt-2" style="flex:2"><img class="row-image" src="{{ listing.listing_item.image_url }}"></div>
