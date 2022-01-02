@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		//archive button
 		const archive_btn = document.createElement('button');
 		archive_btn.setAttribute("class", "btn btn-primary mt-2 archive-btn-mobile");
-		archive_btn.textContent = order.archieved ? "Aktivieren" : "Archivieren";
+		archive_btn.textContent = order.archived ? "Unarchivieren" : "Archivieren";
 		document.querySelector('#load-email').appendChild(archive_btn);
 		archive_btn.addEventListener('click', () => {
 			fetch('/order/'+`${order.id}`, {

@@ -204,8 +204,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		//archive button
 		const archive_btn = document.createElement('button');
-		archive_btn.setAttribute("class", "btn btn-primary archive-btn-mobile");
-		archive_btn.textContent = "Archivieren";
+		archive_btn.setAttribute("class", "btn btn-secondary archive-btn-mobile");
+		archive_btn.textContent = email.archived ? "Unarchivieren" : "Archivieren";
 		document.querySelector('#load-email').appendChild(archive_btn);
 		archive_btn.addEventListener('click', () => {
 			fetch('/emails/'+`${email.id}`, {
