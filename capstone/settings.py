@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os
-import django_heroku
 import environ
+import os
 
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'n*%!wf2@a7z5i$13@)y&)x(ew1yyyhzvl1=a5c015+xj!#z((t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'www.knifesharpener.herokuapp.com', 'www.knifesharpener.eu']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -124,21 +125,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# Activate Django-Heroku
-django_heroku.settings(locals())
-
-CORS_REPLACE_HTTPS_REFERER      = True
-HOST_SCHEME                     = "https://"
-SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT             = True
-SESSION_COOKIE_SECURE           = True
-CSRF_COOKIE_SECURE              = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
-SECURE_HSTS_SECONDS             = 1000000
-SECURE_FRAME_DENY               = True
-
+CORS_REPLACE_HTTPS_REFERER      = False
+HOST_SCHEME                     = "http://"
+SECURE_PROXY_SSL_HEADER         = None
+SECURE_SSL_REDIRECT             = False
+SESSION_COOKIE_SECURE           = False
+CSRF_COOKIE_SECURE              = False
+SECURE_HSTS_SECONDS             = None
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
+SECURE_FRAME_DENY               = False
 
 # Email settings
 
