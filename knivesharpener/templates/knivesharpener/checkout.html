@@ -99,7 +99,7 @@
                 var div = document.createElement('div');
                 div.setAttribute("class", "card p-5");
                 div.innerHTML += '<h1>Vielen Dank für Ihre Bestellung</h1>';
-                div.innerHTML += '<p>Innerhalb der nächsten Tage bekommen sie eine Email, in der ich Ihnen das weitere Vorgehen beschreibe.</p>'
+                div.innerHTML += '<p>Innerhalb der nächsten Tage bekommen sie eine Email, in der ich Ihnen das weitere Vorgehen beschreibe.<br> Eine Bestellbestätigung wurde soeben an Ihre Email-Adresse versendet.</p>'
                 div.innerHTML += `<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'index' %}">Zurück zur Seite</a>`
                 document.querySelector('#checkout').appendChild(div);
             }) 

@@ -12,6 +12,16 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 import datetime
 
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.conf import settings
+
+from .utils import render_to_pdf, save_entry, delete_entry
+from django.core.files import File
+from . import utils
+
 from .models import User, Email, Listing, Cart, CartItem, Adress
 
 
@@ -324,11 +334,12 @@ def processCart(request):
     if request.user.is_authenticated:
         cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
         total = float(data['nameform']['total'])
+        emailadress = data['nameform']['email']
         cart.cart_id = transaction_id
 
         if total == float(cart.total_cart_price):
             cart.completed = True
-        cart.save()  
+        cart.save()
 
         Adress.objects.create(
             user = request.user,
@@ -338,6 +349,28 @@ def processCart(request):
             zipcode = data['addressform']['zipcode'],
             city = data['addressform']['city'],
         )
+
+        order = Cart.objects.get(cart_id = transaction_id)
+
+        render_to_pdf("knivesharpener/orderconfirmation.html", {'orders': order.serialize_order()}, transaction_id)
+
+        html_content = render_to_string("knivesharpener/orderconfirmation_html.html")
+        text_content = strip_tags(html_content)
+
+
+        email = EmailMultiAlternatives(
+            #subject
+            'Bestellbestätigung',
+            #content
+            text_content,
+            #from email
+            settings.EMAIL_HOST_USER,
+            #rec list
+            [emailadress]
+        )
+        email.attach_alternative(html_content, "text/html")
+        email.attach_file(f'knivesharpener/pdf/{transaction_id}.pdf', "application/pdf")
+        email.send()
 
     return JsonResponse('Payment complete', safe=False)
 
@@ -402,3 +435,14 @@ def order(request, order_id):
         return JsonResponse({
             "error": "GET or PUT request required."
         }, status=400)
+
+def orderconfirmation(request):
+    orders = Cart.objects.get(pk=62)
+    transaction_id = orders.cart_id
+    pdf = render_to_pdf("knivesharpener/orderconfirmation.html", {'orders': orders.serialize_order()}, transaction_id)
+    return pdf
+
+def orderconfirmation1(request):
+    orders = Cart.objects.get(pk=62)
+    pdf = render_to_pdf("knivesharpener/orderconfirmation1.html", {'orders': orders.serialize_order()})
+    return pdf
