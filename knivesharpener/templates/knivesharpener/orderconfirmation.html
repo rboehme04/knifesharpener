@@ -1,0 +1,131 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}KniveSharpener{% endblock %}</title>
+        <style>
+            body {
+                font-family: Roboto;
+            }
+            .KnifeSharpener {
+                font-size: 32px; 
+                text-align: right;
+                margin-bottom: 0;
+            }
+            .adresse {
+                width: 100px;
+                margin-left: 480px;
+            }
+            .bestellbestätigung {
+                margin-bottom: 0;
+            }
+            .container {
+                width: 90%;
+                padding-right: var(--bs-gutter-x,.75rem);
+                padding-left: var(--bs-gutter-x,.75rem);
+                margin-right: auto;
+                margin-left: auto;
+            }
+            .tborder {
+                border-top: 1px solid #ececec;
+            }
+            .flex1 {
+                width: 20%
+            }
+            .flex2 {
+                width: 40%
+            }
+            .mt-1 {
+                margin-top: 0.25rem;
+            }
+            .mt-2 {
+                margin-top: 0.5rem;
+            }
+            .mt-3 {
+                margin-top: 1rem
+            }
+            .mt-4 {
+                margin-top: 1.5rem
+            }
+            .p-3 {
+                padding: 1rem;
+            }
+            .mb-2 {
+                margin-bottom: 0.5rem;
+            }
+            th {
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="KnifeSharpener">KnifeSharpener</h1>
+            <p class="adresse">Richard Böhme<br>
+                Am Geiersberg 19<br>
+                09235 Burkhardtsdorf
+            </p>
+            <h1 class="bestellbestätigung">Bestellbestätigung</h1>
+            <div class="border mt-2 p-3">
+                Benutzername: {{orders.user}} <br>
+                Datum: {{orders.date_ordered}} <br>
+            </div>
+            <div class="border p-3">
+                Bestellnummer: {{orders.cart_id}} <br/>
+            </div>
+            <div class="border p-3">
+                Adresse: <br/>
+                {{orders.address_name.0}} <br />
+                {{orders.address_address.0}} <br />
+                {{orders.address_zipcode.0}}, {{orders.address_city.0}}
+            </div>
+            <table class="border mt-2 mb-2 p-3">
+                <tr class='cart-row'>
+                    <th style='flex:2'><strong>Artikel</strong></th>
+                    <th style='flex:1'><strong>Preis</strong></th>
+                    <th style='flex:1'><strong>Anzahl</strong></th>
+                    <th style='flex:1'><strong>Gesamtpreis</strong></th>
+                </tr>
+                
+                {% for order in orders.listings %}
+                    {% if forloop.counter0 == 0 %}
+                        <tr class='cart-row tborder mt-3'>
+                            <td class='pt-2 mt-3 flex2'>{{orders.listings.0}}</td>
+                            <td class='pt-2 mt-3 flex1'>{{orders.price.0}}€</td>
+                            <td class="mt-3 flex1">{{orders.quantity.0}}</td>
+                            <td class="mt-3 flex1">{{orders.total_price_listing.0}}€</td>
+                        </tr>
+                    {% elif forloop.counter0 == 1 %}
+                        <tr class='cart-row tborder mt-3'>
+                            <td class='pt-2 mt-3 flex2'>{{orders.listings.1}}</td>
+                            <td class='pt-2 mt-3 flex1'>{{orders.price.1}}€</td>
+                            <td class="mt-3 flex1">{{orders.quantity.1}}</td>
+                            <td class="mt-3 flex1">{{orders.total_price_listing.1}}€</td>
+                        </tr>
+                    {% elif forloop.counter0 == 2 %}
+                    <tr class='cart-row tborder mt-3'>
+                        <td class='pt-2 mt-3 flex2'>{{orders.listings.2}}</td>
+                        <td class='pt-2 mt-3 flex1'>{{orders.price.2}}€</td>
+                        <td class="mt-3 flex1">{{orders.quantity.2}}</td>
+                        <td class="mt-3 flex1">{{orders.total_price_listing.2}}€</td>
+                    </tr>
+                    {% elif forloop.counter0 == 3 %}
+                    <tr class='cart-row tborder mt-3'>
+                        <td class='pt-2 mt-3 flex2'>{{orders.listings.3}}</td>
+                        <td class='pt-2 mt-3 flex1'>{{orders.price.3}}€</td>
+                        <td class="mt-3 flex1">{{orders.quantity.3}}</td>
+                        <td class="mt-3 flex1">{{orders.total_price_listing.3}}€</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+                <tr class='cart-row mt-4'style="border-top: 1px solid #000">
+                    <td class='pt-2 flex2'></td>
+                    <td class='pt-2 flex1'></td>
+                    <td class="flex1"><strong>{{orders.total_amount}}</strong></td>
+                    <td class="flex1"><strong>{{orders.total_price}}€</strong></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

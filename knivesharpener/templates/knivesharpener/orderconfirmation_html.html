@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}KniveSharpener{% endblock %}</title>
+        <style>
+            body {
+                font-family: Roboto;
+            }
+            .container {
+                width: 90%;
+                padding-right: var(--bs-gutter-x,.75rem);
+                padding-left: var(--bs-gutter-x,.75rem);
+                margin-right: auto;
+                margin-left: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" id='checkout'>
+            <div>
+                <h1>Vielen Dank für Ihre Bestellung</h1>
+                <p>Anbei erhalten Sie die Bestellbestätigung als PDF-Datei.<br>
+                    Vorraussichtlich hole ich die Messer nächsten Freitag Nachmittag bei der von Ihnen angegebenen Adresse ab.<br>
+                    Sollten Sie zu  dieser Zeit nicht anwesend sein, geben Sie mir bitte eine Rückmeldung per Email.<br><br>
+                    Ihr Messerschleifer Richard Böhme
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
