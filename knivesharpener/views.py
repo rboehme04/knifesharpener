@@ -435,14 +435,3 @@ def order(request, order_id):
         return JsonResponse({
             "error": "GET or PUT request required."
         }, status=400)
-
-def orderconfirmation(request):
-    orders = Cart.objects.get(pk=62)
-    transaction_id = orders.cart_id
-    pdf = render_to_pdf("knivesharpener/orderconfirmation.html", {'orders': orders.serialize_order()}, transaction_id)
-    return pdf
-
-def orderconfirmation1(request):
-    orders = Cart.objects.get(pk=62)
-    pdf = render_to_pdf("knivesharpener/orderconfirmation1.html", {'orders': orders.serialize_order()})
-    return pdf
