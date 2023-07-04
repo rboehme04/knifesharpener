@@ -1,5 +1,7 @@
 # Capstone project by Richard Böhme
 
+A demonstration on youtube: [Video](https://youtu.be/mRb1b3-lvMQ)
+
 ### About:
 The project I chose for the capstone project is a type of e-commerce store where you can order services and communicate with the site administrator through a built-in messenger function.  
 The user can view the homepage and read the information about the knife sharpening store. He can also view the offers presented on another page. It is possible for the user to register or log in through the login page. Once the user is logged in, he has the possibility to send a request to the administrator of the site via a contact form and ask him a question. This request will end up in the administrator's inbox. The administrator of the page can reply to the request, send new messages and view the sent messages. Each user has a messenger page. The messenger is divided into the inbox and the archive and each user can mark a message as read or archive it. Only the administrator can create new messages and send them directly to specific users. The other users must use the contact form, which automatically forwards the message to the administrator.
